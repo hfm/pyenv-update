@@ -4,8 +4,6 @@ This [pyenv](https://github.com/yyuu/pyenv) plugin, is a port of the [rbenv-upda
 
 ## Installation
 
-### GitHub
-
 ```sh
 mkdir -p $PYENV_ROOT/plugins
 git clone git@github.com:Tacahilo/pyenv-update.git $PYENV_ROOT/plugins/pyenv-update
