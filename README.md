@@ -4,12 +4,6 @@ This [pyenv](https://github.com/yyuu/pyenv) plugin, is a port of the [rbenv-upda
 
 ## Installation
 
-### Homebrew
-
-```
-brew install pyenv-update
-```
-
 ### GitHub
 
 ```sh
