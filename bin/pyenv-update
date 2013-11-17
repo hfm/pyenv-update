@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -e
+[ -n "$PYENV_DEBUG" ] && set -x
+
+indent_output() {
+  while read data; do
+    echo -e " \033[1;32m|\033[0m  $data"
+  done
+}
+
+pyenv_update() {
+  echo -e "\033[1;32mupdating $1\033[0m"
+  git checkout master 2>&1 | indent_output
+  for remote in $(git remote)
+  do
+    git fetch ${remote} 2>&1 | indent_output
+    git pull ${remote} master 2>&1 | indent_output
+  done
+  echo
+}
+
+main() {
+  cd ${PYENV_ROOT:-$(pyenv root)}
+  pyenv_update pyenv
+
+  plugins=plugins/*
+  for plugin in ${plugins[@]}; do
+    if [ -d $plugin/.git ]; then
+      cd $plugin
+      pyenv_update $(basename $plugin)
+      cd - >/dev/null
+    fi
+  done
+}
+
+main
